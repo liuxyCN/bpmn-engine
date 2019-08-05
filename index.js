@@ -116,7 +116,7 @@ function Engine(options = {}) {
     return execution.stop();
   }
 
-  function recover(savedState) {
+  function recover(savedState, options) {
     if (!name) name = savedState.name;
     if (!savedState.definitions) return engine;
 
@@ -127,7 +127,7 @@ function Engine(options = {}) {
 
       logger.debug(`<${name}> recover ${dState.type} <${dState.id}>`);
 
-      const definition = loadDefinition(source);
+      const definition = loadDefinition(source, options);
       definition.recover(dState);
 
       return definition;
